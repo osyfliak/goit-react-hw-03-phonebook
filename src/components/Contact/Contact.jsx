@@ -2,6 +2,7 @@ import { Component } from 'react';
 import AddContactForm from './AddContactForm/AddContactForm';
 import ContactList from './ContactList/ContactList';
 import ContactFiltr from './ContactFiltr/ContactFiltr';
+import { Title, Div } from './Style.styled';
 
 class Contact extends Component {
   state = {
@@ -43,15 +44,15 @@ class Contact extends Component {
   render() {
     const { filter } = this.state;
     return (
-      <div>
+      <Div>
         <AddContactForm onAddContact={this.hanleAddContact} />
-        <h2>Contacts</h2>
+        <Title>Contacts</Title>
         <ContactFiltr onChange={this.handleChangeFilter} name={filter} />
         <ContactList
           contactList={this.handleFilterFilms()}
           onDeleteContact={this.hanleDeleteContact}
         />
-      </div>
+      </Div>
     );
   }
 }

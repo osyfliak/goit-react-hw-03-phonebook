@@ -1,8 +1,11 @@
+import { Input, Label } from '../Style.styled';
+import PropTypes from 'prop-types';
+
 const ContactFiltr = ({ onChange, name }) => {
   return (
-    <label>
-      Find contact by name
-      <input
+    <>
+      <Label>Find contact by name </Label>
+      <Input
         onChange={onChange}
         value={name}
         type="text"
@@ -11,8 +14,12 @@ const ContactFiltr = ({ onChange, name }) => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-    </label>
+    </>
   );
 };
 
+ContactFiltr.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+};
 export default ContactFiltr;
