@@ -4,11 +4,31 @@ import ContactList from './ContactList/ContactList';
 import ContactFiltr from './ContactFiltr/ContactFiltr';
 import { Title, Div } from './Style.styled';
 
+const LOCAL_CONTACT_KEY = 'localContactKey';
+
 class Contact extends Component {
   state = {
     contactList: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const savedContactList = JSON.parse(
+      localStorage.getItem(LOCAL_CONTACT_KEY)
+    );
+    if (savedContactList) {
+      this.setState({ contactList: savedContactList });
+    }
+  }
+
+  componentDidUpdate(_, prevState, snapshot) {
+    if (prevState.contactList.length !== this.state.contactList.length) {
+      localStorage.setItem(
+        LOCAL_CONTACT_KEY,
+        JSON.stringify(this.state.contactList)
+      );
+    }
+  }
 
   handleChangeFilter = e => {
     const { value } = e.target;
